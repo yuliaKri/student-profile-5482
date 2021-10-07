@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useEffect, useState}  from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import Student from "./Student";
 import 'materialize-css/dist/css/materialize.min.css'
@@ -22,16 +22,15 @@ function App() {
 
     const searchFilter = (el) => {
         if (searchName === '') return el
-        else if (regExpName.test(el.firstName)||regExpName.test(el.lastName)) return el
+        else if (regExpName.test(el.firstName) || regExpName.test(el.lastName)) return el
     }
     const searchFilterTag = (el) => {
         if (searchTag === '') return el
         if (el.tag && regExpName.test(el.tag)) return el
     }
-    
+
     const addTag = (item, id) => {
-        const newStudents = students.map(el => el.id === id ? {...el, tag: item } : el )
-        console.log(newStudents);
+        const newStudents = students.map(el => el.id === id ? {...el, tag: item} : el)
         setStudents(newStudents);
     }
 
@@ -56,21 +55,17 @@ function App() {
                 </div>
 
             </form>
-
-
-                {students
-                    .filter(searchFilter)
-                    .filter(searchFilterTag)
-                        .map(el => <div key={el.id}>
-                            <Student student={el}
-                                     regExpName={regExpName}
-                                     regExpTag={regExpTag}
-                                     addTag={addTag}
-                                //searchValue={searchValue}
-                            />
-                        </div>)
-                }
-
+            {students
+                .filter(searchFilter)
+                .filter(searchFilterTag)
+                .map(el => <div key={el.id}>
+                    <Student student={el}
+                             regExpName={regExpName}
+                             regExpTag={regExpTag}
+                             addTag={addTag}
+                    />
+                </div>)
+            }
         </div>
     );
 }
