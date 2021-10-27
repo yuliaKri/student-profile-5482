@@ -26,7 +26,7 @@ function App() {
     }
     const searchFilterTag = (el) => {
         if (searchTag === '') return el
-        if (el.tag && regExpName.test(el.tag)) return el
+        if (el.tag && regExpTag.test(el.tag)) return el
     }
 
     const addTag = (item, id) => {
